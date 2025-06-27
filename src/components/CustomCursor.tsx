@@ -1,58 +1,80 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
 
 const CustomCursor: React.FC = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    let dotX = 0;
+    let dotY = 0;
+    let animationFrame: number;
+    let firstMove = true;
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.tagName === 'BUTTON' || target.tagName === 'A' || target.classList.contains('cursor-hover')) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
+    const updateMousePosition = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (firstMove) {
+        cursorX = mouseX;
+        cursorY = mouseY;
+        dotX = mouseX;
+        dotY = mouseY;
+        setVisible(true);
+        if (cursorRef.current) {
+          cursorRef.current.style.transform = `translate3d(${cursorX - 9}px, ${cursorY - 9}px, 0)`;
+        }
+        if (dotRef.current) {
+          dotRef.current.style.transform = `translate3d(${dotX - 3.5}px, ${dotY - 3.5}px, 0)`;
+        }
+        firstMove = false;
       }
     };
 
+    const animate = () => {
+      cursorX += (mouseX - cursorX) * 0.22;
+      cursorY += (mouseY - cursorY) * 0.22;
+      dotX += (mouseX - dotX) * 0.38;
+      dotY += (mouseY - dotY) * 0.38;
+
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${cursorX - 9}px, ${cursorY - 9}px, 0)`;
+      }
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${dotX - 3.5}px, ${dotY - 3.5}px, 0)`;
+      }
+      animationFrame = requestAnimationFrame(animate);
+    };
+
     window.addEventListener('mousemove', updateMousePosition);
-    window.addEventListener('mouseover', handleMouseOver);
+    animationFrame = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener('mousemove', updateMousePosition);
-      window.removeEventListener('mouseover', handleMouseOver);
+      cancelAnimationFrame(animationFrame);
     };
   }, []);
 
+  if (!visible) return null;
+
   return (
     <>
-      <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border-2 border-gray-800 rounded-full pointer-events-none z-50 mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 16,
-          y: mousePosition.y - 16,
-          scale: isHovering ? 1.5 : 1,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 28,
+      <div
+        ref={cursorRef}
+        className="fixed top-0 left-0 w-[18px] h-[18px] bg-black rounded-full opacity-90 z-50 pointer-events-none transition-transform duration-150"
+        style={{
+          willChange: 'transform',
+          transition: 'transform 0.15s cubic-bezier(0.22, 1, 0.36, 1)',
         }}
       />
-      <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-gray-800 rounded-full pointer-events-none z-50 mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 800,
-          damping: 35,
+      <div
+        ref={dotRef}
+        className="fixed top-0 left-0 w-[7px] h-[7px] bg-green-500 rounded-full z-50 pointer-events-none"
+        style={{
+          willChange: 'transform',
         }}
       />
     </>

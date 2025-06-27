@@ -2,16 +2,19 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const scrollItems = [
-  { content: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop', alt: 'Wellness Coach' },
-  { content: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop', alt: 'Yoga Practice' },
-  { content: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop', alt: 'Meditation' },
-  { content: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop', alt: 'Life Coach' },
-  { content: 'https://images.pexels.com/photos/4056530/pexels-photo-4056530.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop', alt: 'Reiki Healing' },
-  { content: 'https://images.pexels.com/photos/4056531/pexels-photo-4056531.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop', alt: 'Sound Healing' },
-  { content: 'https://images.pexels.com/photos/4056532/pexels-photo-4056532.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop', alt: 'Energy Work' },
-  { content: 'https://images.pexels.com/photos/4056533/pexels-photo-4056533.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop', alt: 'Mindfulness' },
-  { content: 'https://images.pexels.com/photos/4056534/pexels-photo-4056534.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop', alt: 'Wellness Retreat' },
-  { content: 'https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop', alt: 'Spiritual Guide' },
+  { content: '/1.png', alt: 'Image 1' },
+  { content: '/2.png', alt: 'Image 2' },
+  { content: '/3.png', alt: 'Image 3' },
+  { content: '/4.png', alt: 'Image 4' },
+  { content: '/5.png', alt: 'Image 5' },
+  { content: '/6.png', alt: 'Image 6' },
+  { content: '/7.png', alt: 'Image 7' },
+  { content: '/8.png', alt: 'Image 8' },
+  { content: '/9.png', alt: 'Image 9' },
+  { content: '/10.png', alt: 'Image 10' },
+  { content: '/11.png', alt: 'Image 11' },
+  { content: '/12.png', alt: 'Image 12' },
+  { content: '/13.png', alt: 'Image 13' },
 ];
 
 const InfiniteScrollRail: React.FC = () => {
