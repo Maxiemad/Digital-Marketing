@@ -9,7 +9,6 @@ import ServicesSection from './components/ServicesSection';
 import ComparisonSection from './components/ComparisonSection';
 import AuditSection from './components/AuditSection';
 import WhoWeHelpSection from './components/WhoWeHelpSection';
-import TestimonialsSection from './components/TestimonialsSection';
 import FinalCTASection from './components/FinalCTASection';
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
       <ComparisonSection />
       <AuditSection />
       <WhoWeHelpSection />
-      <TestimonialsSection />
       <FinalCTASection />
     </div>
   );

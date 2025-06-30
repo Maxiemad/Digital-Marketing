@@ -160,9 +160,10 @@ const FinalCTASection: React.FC = () => {
               className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gray-600 rounded-full mb-4"
               whileHover={{ 
                 scale: 1.1,
+                rotate: 360,
                 y: -5
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.6 }}
             >
               <Mail className="w-6 h-6 sm:w-8 sm:h-8" />
             </motion.div>

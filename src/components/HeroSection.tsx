@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Play } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const handlePlay = () => setIsPlaying(true);
+  const handleBack = () => setIsPlaying(false);
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white relative overflow-hidden pt-20 sm:pt-24">
       {/* Animated Background Elements */}
@@ -108,6 +115,7 @@ const HeroSection: React.FC = () => {
                 color: '#008C8D'
               }}
               whileTap={{ scale: 0.95 }}
+              onClick={handleOpenModal}
             >
               <Play className="mr-2 group-hover:animate-pulse" size={20} />
               Watch How It Works
@@ -117,39 +125,80 @@ const HeroSection: React.FC = () => {
 
         {/* Right Column - Visual */}
         <motion.div
-          className="relative mt-8 lg:mt-0"
+          className="relative mt-8 lg:mt-0 lg:self-start"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <div className="relative bg-gradient-to-br from-teal-50 to-orange-50 rounded-3xl p-6 sm:p-8 shadow-2xl">
-            <motion.div
-              className="grid grid-cols-2 gap-3 sm:gap-4"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <div className="bg-white p-3 sm:p-4 rounded-xl shadow-lg">
-                <div className="w-full h-2 sm:h-3 bg-teal-200 rounded mb-2"></div>
-                <div className="w-3/4 h-1.5 sm:h-2 bg-gray-200 rounded mb-1"></div>
-                <div className="w-1/2 h-1.5 sm:h-2 bg-gray-200 rounded"></div>
-              </div>
-              <div className="bg-white p-3 sm:p-4 rounded-xl shadow-lg">
-                <div className="w-full h-2 sm:h-3 bg-orange-200 rounded mb-2"></div>
-                <div className="w-2/3 h-1.5 sm:h-2 bg-gray-200 rounded mb-1"></div>
-                <div className="w-3/4 h-1.5 sm:h-2 bg-gray-200 rounded"></div>
-              </div>
-              <div className="bg-white p-3 sm:p-4 rounded-xl shadow-lg">
-                <div className="w-full h-2 sm:h-3 bg-red-200 rounded mb-2"></div>
-                <div className="w-1/2 h-1.5 sm:h-2 bg-gray-200 rounded mb-1"></div>
-                <div className="w-2/3 h-1.5 sm:h-2 bg-gray-200 rounded"></div>
-              </div>
-              <div className="bg-white p-3 sm:p-4 rounded-xl shadow-lg">
-                <div className="w-full h-2 sm:h-3 bg-gray-300 rounded mb-2"></div>
-                <div className="w-3/4 h-1.5 sm:h-2 bg-gray-200 rounded mb-1"></div>
-                <div className="w-1/3 h-1.5 sm:h-2 bg-gray-200 rounded"></div>
-              </div>
-            </motion.div>
+          {/* Responsive Vimeo Video with Play Button Overlay */}
+          <div className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black max-w-full lg:max-w-[600px] xl:max-w-[700px]">
+            {/* NOTE: Custom cursor cannot appear inside the Vimeo iframe due to browser security restrictions. */}
+            {!isPlaying ? (
+              <>
+                <img
+                  src="https://vumbnail.com/1097501305.jpg"
+                  alt="Video thumbnail"
+                  className="w-full h-full object-cover object-center absolute inset-0"
+                  draggable={false}
+                />
+                {/* Play button overlay */}
+                <button
+                  aria-label="Play video"
+                  className="absolute inset-0 flex items-center justify-center w-full h-full bg-black/30 hover:bg-black/40 transition group z-10 cursor-pointer"
+                  onClick={handlePlay}
+                >
+                  <span className="inline-flex items-center justify-center rounded-full bg-white/90 group-hover:bg-white shadow-lg transition p-6 sm:p-8 cursor-pointer">
+                    <Play size={48} className="text-teal-600 group-hover:text-orange-500" />
+                  </span>
+                </button>
+              </>
+            ) : (
+              <>
+                {/* Back button to return to thumbnail */}
+                <button
+                  onClick={handleBack}
+                  className="absolute top-3 left-3 z-50 bg-white/90 hover:bg-white text-teal-700 font-semibold rounded-lg px-4 py-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition cursor-pointer"
+                  style={{ minWidth: 64 }}
+                  aria-label="Back to website"
+                >
+                  ← Back
+                </button>
+                <iframe
+                  src="https://player.vimeo.com/video/1097501305?autoplay=1&title=0&byline=0&portrait=0&muted=0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full rounded-2xl"
+                  style={{ border: 0 }}
+                  title="How It Works Video"
+                />
+              </>
+            )}
           </div>
+
+          {/* Modal Overlay for Video (for Watch How It Works button) */}
+          {showModal && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80">
+              <div className="relative w-[90vw] max-w-3xl h-[70vh] bg-black rounded-2xl shadow-2xl flex items-center justify-center">
+                {/* Close/Back button */}
+                <button
+                  onClick={handleCloseModal}
+                  className="absolute top-3 left-3 z-50 bg-white/90 hover:bg-white text-teal-700 font-semibold rounded-lg px-4 py-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition cursor-pointer"
+                  style={{ minWidth: 64 }}
+                  aria-label="Back to website"
+                >
+                  ← Back
+                </button>
+                <iframe
+                  src="https://player.vimeo.com/video/1097501305?autoplay=1&title=0&byline=0&portrait=0&muted=0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full rounded-2xl"
+                  style={{ border: 0 }}
+                  title="How It Works Video"
+                />
+              </div>
+            </div>
+          )}
 
           {/* Floating Icons */}
           <motion.div

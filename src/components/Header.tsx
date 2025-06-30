@@ -48,7 +48,7 @@ const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex space-x-8">
-            {['methodology', 'services', 'testimonials', 'contact'].map((item) => (
+            {['methodology', 'services', 'contact'].map((item) => (
               <motion.button
                 key={item}
                 className="text-gray-700 hover:text-teal-600 font-medium cursor-hover capitalize transition-colors text-sm xl:text-base"
@@ -103,7 +103,7 @@ const Header: React.FC = () => {
             exit={{ opacity: 0, height: 0 }}
           >
             <div className="py-4 space-y-4">
-              {['methodology', 'services', 'testimonials', 'contact'].map((item) => (
+              {['methodology', 'services', 'contact'].map((item) => (
                 <button
                   key={item}
                   className="block w-full text-left px-4 py-3 text-gray-700 hover:text-teal-600 capitalize cursor-hover text-lg font-medium"
