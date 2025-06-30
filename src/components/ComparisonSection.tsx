@@ -9,7 +9,7 @@ const ComparisonSection: React.FC = () => {
     { gotoretreats: 'Ongoing support & optimization', others: 'One-time setup and goodbye' },
     { gotoretreats: 'Story-first marketing approach', others: 'Template-focused content' },
     { gotoretreats: 'Soulful & smart methodology', others: 'Focus on vanity metrics' },
-    { gotoretreats: 'Lifetime community access', others: 'No ongoing community' },
+    { gotoretreats: 'Host your own community and courses on our platform', others: 'No ongoing community' },
   ];
 
   return (

@@ -171,7 +171,7 @@ const FinalCTASection: React.FC = () => {
               Have questions? We're here to help
             </p>
             <motion.a
-              href="mailto:avi@gotoretreats.com"
+              href="mailto:marketing@gotoretreats.com"
               className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700 transition-all cursor-hover text-sm sm:text-base break-all"
               whileHover={{ 
                 scale: 1.05,
@@ -179,7 +179,7 @@ const FinalCTASection: React.FC = () => {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              avi@gotoretreats.com
+              marketing@gotoretreats.com
             </motion.a>
           </motion.div>
         </div>

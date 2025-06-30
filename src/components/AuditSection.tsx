@@ -118,10 +118,10 @@ const AuditSection: React.FC = () => {
               <span className="text-sm sm:text-base">Or email us directly: </span>
             </div>
             <a 
-              href="mailto:avi@gotoretreats.com" 
+              href="mailto:marketing@gotoretreats.com" 
               className="text-white font-semibold hover:underline cursor-hover text-sm sm:text-base"
             >
-              avi@gotoretreats.com
+              marketing@gotoretreats.com
             </a>
           </motion.div>
         </motion.div>

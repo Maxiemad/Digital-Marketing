@@ -1,58 +1,58 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
 const SoulfulMethodology: React.FC = () => {
   const soulfulBlocks = [
     {
       letter: 'S',
       title: 'STORYTELLING',
-      description: 'Print & digital marketing materials',
+      description: 'Creative content that emotionally connects audiences.',
       color: 'bg-indigo-600',
       hoverColor: 'hover:bg-indigo-700'
     },
     {
       letter: 'O',
       title: 'ONLINE PRESENCE',
-      description: 'Online business presence',
+      description: 'Visible on social media, websites, and listings.',
       color: 'bg-red-500',
       hoverColor: 'hover:bg-red-600'
     },
     {
       letter: 'U',
       title: 'USER TRUST',
-      description: 'Reviews, reviews & more reviews',
+      description: 'Reviews, real feedback, and consistent brand honesty.',
       color: 'bg-orange-500',
       hoverColor: 'hover:bg-orange-600'
     },
     {
       letter: 'L',
       title: 'LOVE & ENGAGE',
-      description: 'Love & Engage with customers & prospects',
+      description: 'Interactive content that builds genuine relationships.',
       color: 'bg-gray-400',
       hoverColor: 'hover:bg-gray-500'
     },
     {
       letter: 'F',
       title: 'FINDABILITY',
-      description: 'Get noticed prominently in search results',
+      description: 'Rank higher using SEO, maps, and keywords.',
       color: 'bg-gray-600',
       hoverColor: 'hover:bg-gray-700'
     },
     {
       letter: 'U',
       title: 'UNVEIL',
-      description: 'Ads, PR posts, billboards, flyers',
+      description: 'Marketing through PR, ads, events, and flyers.',
       color: 'bg-gray-800',
       hoverColor: 'hover:bg-gray-900'
     },
     {
       letter: 'L',
       title: 'LONGEVITY',
-      description: 'Build engaging communities & courses',
+      description: 'Grow with communities, courses, and consistency.',
       color: 'bg-teal-600',
       hoverColor: 'hover:bg-teal-700'
     }
   ];
+
 
   return (
     <section id="methodology" className="py-16 sm:py-20 bg-white">
