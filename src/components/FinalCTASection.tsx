@@ -184,31 +184,31 @@ const FinalCTASection: React.FC = () => {
             </motion.a>
           </motion.div>
         </div>
-
-        {/* Footer */}
-        <motion.div
-          className="w-full bg-white shadow-lg px-0 py-10 sm:py-14 text-center border-t border-gray-200"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <motion.div 
-            className="flex items-center justify-center mb-6"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <img 
-              src="/Screenshot_2025-06-08_at_7.05.20_PM-removebg-preview.png" 
-              alt="GoToRetreats" 
-              className="h-16 sm:h-20 w-auto"
-            />
-          </motion.div>
-          <p className="text-gray-800 text-sm sm:text-base font-medium">
-            © 2025 GoToRetreats. Helping wellness practitioners thrive online.
-          </p>
-        </motion.div>
       </div>
+
+      {/* Footer - now outside the container, full width */}
+      <motion.div
+        className="w-full bg-white shadow-lg px-0 py-10 sm:py-14 text-center border-t border-gray-200"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        viewport={{ once: true }}
+      >
+        <motion.div 
+          className="flex items-center justify-center mb-6"
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
+        >
+          <img 
+            src="/Screenshot_2025-06-08_at_7.05.20_PM-removebg-preview.png" 
+            alt="GoToRetreats" 
+            className="h-16 sm:h-20 w-auto"
+          />
+        </motion.div>
+        <p className="text-gray-800 text-sm sm:text-base font-medium">
+          © 2025 GoToRetreats. Helping wellness practitioners thrive online.
+        </p>
+      </motion.div>
     </section>
   );
 };
