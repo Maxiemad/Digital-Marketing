@@ -49,7 +49,7 @@ const ServicesSection: React.FC = () => {
     { 
       icon: Users, 
       title: 'Lifetime Community', 
-      description: 'Build your own community and boost customer lifeline value',
+      description: 'Build your own community and boost customer lifetime value',
       gradient: 'from-purple-400 to-indigo-500'
     },
   ];
