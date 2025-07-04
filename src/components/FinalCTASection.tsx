@@ -4,7 +4,7 @@ import { Phone, Mail, FileText } from 'lucide-react';
 
 const FinalCTASection: React.FC = () => {
   return (
-    <section id="contact" className="py-16 sm:py-20 bg-gradient-to-br from-gray-900 to-teal-900 text-white relative overflow-hidden">
+    <section id="contact" className="pt-16 sm:pt-20 pb-0 bg-gradient-to-br from-gray-900 to-teal-900 text-white relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -187,7 +187,7 @@ const FinalCTASection: React.FC = () => {
 
         {/* Footer */}
         <motion.div
-          className="text-center pt-8 sm:pt-12 border-t border-gray-700"
+          className="w-full bg-white shadow-lg px-0 py-10 sm:py-14 text-center border-t border-gray-200"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
@@ -201,10 +201,10 @@ const FinalCTASection: React.FC = () => {
             <img 
               src="/Screenshot_2025-06-08_at_7.05.20_PM-removebg-preview.png" 
               alt="GoToRetreats" 
-              className="h-16 sm:h-20 w-auto opacity-90"
+              className="h-16 sm:h-20 w-auto"
             />
           </motion.div>
-          <p className="text-gray-400 text-sm sm:text-base">
+          <p className="text-gray-800 text-sm sm:text-base font-medium">
             © 2025 GoToRetreats. Helping wellness practitioners thrive online.
           </p>
         </motion.div>
