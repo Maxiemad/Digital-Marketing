@@ -33,7 +33,7 @@ const Header: React.FC = () => {
       transition={{ duration: 0.6 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-3 sm:py-4">
+        <div className={`flex justify-between items-center transition-all duration-300 ${isScrolled ? 'py-1 sm:py-2' : 'py-3 sm:py-4'}`}>
           <motion.div
             className="flex items-center cursor-hover"
             whileHover={{ scale: 1.05 }}
@@ -42,7 +42,7 @@ const Header: React.FC = () => {
             <img 
               src="/Screenshot_2025-06-08_at_7.05.20_PM-removebg-preview.png" 
               alt="GoToRetreats" 
-              className="h-16 sm:h-20 w-auto"
+              className={`transition-all duration-300 ${isScrolled ? 'h-10 sm:h-12' : 'h-16 sm:h-20'} w-auto`}
             />
           </motion.div>
 

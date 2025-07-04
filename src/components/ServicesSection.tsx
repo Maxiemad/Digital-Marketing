@@ -43,13 +43,13 @@ const ServicesSection: React.FC = () => {
     { 
       icon: BookOpen, 
       title: 'GoToRetreats Academy', 
-      description: 'Exclusive training & premium resources',
+      description: 'Host courses & webinars for free, earn passive income',
       gradient: 'from-indigo-400 to-blue-500'
     },
     { 
       icon: Users, 
       title: 'Lifetime Community', 
-      description: 'Ongoing support & expert networking',
+      description: 'Build your own community and boost customer lifeline value',
       gradient: 'from-purple-400 to-indigo-500'
     },
   ];
