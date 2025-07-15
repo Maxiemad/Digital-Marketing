@@ -136,7 +136,7 @@ const HeroSection: React.FC = () => {
             {!isPlaying ? (
               <>
                 <img
-                  src="https://vumbnail.com/1097501305.jpg"
+                  src="https://vumbnail.com/1101151858.jpg"
                   alt="Video thumbnail"
                   className="w-full h-full object-cover object-center absolute inset-0"
                   draggable={false}
@@ -164,7 +164,7 @@ const HeroSection: React.FC = () => {
                   ← Back
                 </button>
                 <iframe
-                  src="https://player.vimeo.com/video/1097501305?autoplay=1&title=0&byline=0&portrait=0&muted=0"
+                  src="https://player.vimeo.com/video/1101151858?autoplay=1&title=0&byline=0&portrait=0&muted=0"
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
                   className="w-full h-full rounded-2xl"
@@ -189,7 +189,7 @@ const HeroSection: React.FC = () => {
                   ← Back
                 </button>
                 <iframe
-                  src="https://player.vimeo.com/video/1097501305?autoplay=1&title=0&byline=0&portrait=0&muted=0"
+                  src="https://player.vimeo.com/video/1101151858?autoplay=1&title=0&byline=0&portrait=0&muted=0"
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
                   className="w-full h-full rounded-2xl"
