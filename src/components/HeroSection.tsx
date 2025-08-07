@@ -1,14 +1,88 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Play } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const handlePlay = () => setIsPlaying(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    // Detect mobile device
+    const checkMobile = () => {
+      const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+      const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+      setIsMobile(isMobileDevice);
+    };
+    
+    checkMobile();
+  }, []);
+
+  const handlePlay = () => {
+    setIsPlaying(true);
+    // Immediate audio unmute for mobile
+    if (isMobile && iframeRef.current) {
+      // Try to unmute immediately and then again after a short delay
+      try {
+        iframeRef.current?.contentWindow?.postMessage('{"method":"setVolume","value":1}', '*');
+        iframeRef.current?.contentWindow?.postMessage('{"method":"setMuted","value":false}', '*');
+      } catch (error) {
+        console.log('Could not unmute video immediately');
+      }
+    }
+  };
+
   const handleBack = () => setIsPlaying(false);
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
+
+  // Generate video URL with appropriate parameters for mobile/desktop
+  const getVideoUrl = (autoplay: boolean = true) => {
+    const baseUrl = 'https://player.vimeo.com/video/1100787125';
+    const params = new URLSearchParams({
+      autoplay: autoplay ? '1' : '0',
+      title: '0',
+      byline: '0',
+      portrait: '0',
+      muted: '0', // Always start unmuted
+      controls: '1', // Show controls for better mobile experience
+      playsinline: '1', // Important for iOS
+      volume: '1', // Set volume to maximum
+    });
+    
+    return `${baseUrl}?${params.toString()}`;
+  };
+
+  const handleIframeLoad = () => {
+    // Immediate audio handling for mobile
+    if (isMobile) {
+      // Try multiple times with minimal delays to ensure audio starts with video
+      const unmuteAttempts = [
+        () => {
+          try {
+            iframeRef.current?.contentWindow?.postMessage('{"method":"setVolume","value":1}', '*');
+            iframeRef.current?.contentWindow?.postMessage('{"method":"setMuted","value":false}', '*');
+          } catch (error) {
+            console.log('Unmute attempt 1 failed');
+          }
+        },
+        () => {
+          try {
+            iframeRef.current?.contentWindow?.postMessage('{"method":"setVolume","value":1}', '*');
+          } catch (error) {
+            console.log('Unmute attempt 2 failed');
+          }
+        }
+      ];
+
+      // Execute immediately
+      unmuteAttempts[0]();
+      
+      // Execute after minimal delay
+      setTimeout(() => unmuteAttempts[1](), 100);
+    }
+  };
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white relative overflow-hidden pt-20 sm:pt-24">
@@ -164,12 +238,14 @@ const HeroSection: React.FC = () => {
                   ← Back
                 </button>
                 <iframe
-                  src="https://player.vimeo.com/video/1100787125?autoplay=1&title=0&byline=0&portrait=0&muted=0"
+                  ref={iframeRef}
+                  src={getVideoUrl(true)}
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
                   className="w-full h-full rounded-2xl"
                   style={{ border: 0 }}
                   title="How It Works Video"
+                  onLoad={handleIframeLoad}
                 />
               </>
             )}
@@ -189,12 +265,36 @@ const HeroSection: React.FC = () => {
                   ← Back
                 </button>
                 <iframe
-                  src="https://player.vimeo.com/video/1100787125?autoplay=1&title=0&byline=0&portrait=0&muted=0"
+                  src={getVideoUrl(true)}
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
                   className="w-full h-full rounded-2xl"
                   style={{ border: 0 }}
                   title="How It Works Video"
+                  onLoad={() => {
+                    // Immediate audio handling for modal on mobile
+                    if (isMobile) {
+                      const modalIframe = document.querySelector('.fixed iframe') as HTMLIFrameElement;
+                      if (modalIframe) {
+                        // Try to unmute immediately
+                        try {
+                          modalIframe.contentWindow?.postMessage('{"method":"setVolume","value":1}', '*');
+                          modalIframe.contentWindow?.postMessage('{"method":"setMuted","value":false}', '*');
+                        } catch (error) {
+                          console.log('Could not unmute modal video immediately');
+                        }
+                        
+                        // Try again after minimal delay
+                        setTimeout(() => {
+                          try {
+                            modalIframe.contentWindow?.postMessage('{"method":"setVolume","value":1}', '*');
+                          } catch (error) {
+                            console.log('Could not set volume in modal');
+                          }
+                        }, 100);
+                      }
+                    }
+                  }}
                 />
               </div>
             </div>
