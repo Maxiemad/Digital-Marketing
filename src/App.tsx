@@ -9,6 +9,7 @@ import ServicesSection from './components/ServicesSection';
 import ComparisonSection from './components/ComparisonSection';
 import AuditSection from './components/AuditSection';
 import WhoWeHelpSection from './components/WhoWeHelpSection';
+import NewsletterSignupSection from './components/NewsletterSignupSection';
 import FinalCTASection from './components/FinalCTASection';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <ComparisonSection />
       <AuditSection />
       <WhoWeHelpSection />
+      <NewsletterSignupSection />
       <FinalCTASection />
     </div>
   );
