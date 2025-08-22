@@ -14,6 +14,7 @@ const CustomCursor: React.FC = () => {
     let dotY = 0;
     let animationFrame: number;
     let firstMove = true;
+    let lastTime = 0;
 
     const updateMousePosition = (e: MouseEvent) => {
       mouseX = e.clientX;
@@ -34,11 +35,24 @@ const CustomCursor: React.FC = () => {
       }
     };
 
-    const animate = () => {
-      cursorX += (mouseX - cursorX) * 0.22;
-      cursorY += (mouseY - cursorY) * 0.22;
-      dotX += (mouseX - dotX) * 0.38;
-      dotY += (mouseY - dotY) * 0.38;
+    const animate = (now: number) => {
+      if (lastTime === 0) {
+        lastTime = now;
+      }
+      const dt = Math.min(48, now - lastTime); // cap large frame gaps
+      lastTime = now;
+
+      // Convert per-frame smoothing to time-based smoothing
+      const step = 1000 / 60; // 60fps baseline
+      const toTimeSmoothing = (smoothingPerFrame: number) => 1 - Math.pow(1 - smoothingPerFrame, dt / step);
+
+      const cursorSmoothing = toTimeSmoothing(0.18); // larger circle follows a bit slower
+      const dotSmoothing = toTimeSmoothing(0.30); // small dot is snappier
+
+      cursorX += (mouseX - cursorX) * cursorSmoothing;
+      cursorY += (mouseY - cursorY) * cursorSmoothing;
+      dotX += (mouseX - dotX) * dotSmoothing;
+      dotY += (mouseY - dotY) * dotSmoothing;
 
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate3d(${cursorX - 9}px, ${cursorY - 9}px, 0)`;
@@ -64,15 +78,14 @@ const CustomCursor: React.FC = () => {
     <>
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-[18px] h-[18px] bg-black rounded-full opacity-90 z-50 pointer-events-none transition-transform duration-150"
+        className="fixed top-0 left-0 w-[18px] h-[18px] bg-black rounded-full opacity-90 z-[2147483647] pointer-events-none"
         style={{
           willChange: 'transform',
-          transition: 'transform 0.15s cubic-bezier(0.22, 1, 0.36, 1)',
         }}
       />
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-[7px] h-[7px] bg-green-500 rounded-full z-50 pointer-events-none"
+        className="fixed top-0 left-0 w-[7px] h-[7px] bg-green-500 rounded-full z-[2147483647] pointer-events-none"
         style={{
           willChange: 'transform',
         }}
