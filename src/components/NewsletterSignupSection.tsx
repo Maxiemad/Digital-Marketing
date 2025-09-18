@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const NewsletterSignupSection: React.FC = () => {
@@ -6,6 +6,20 @@ const NewsletterSignupSection: React.FC = () => {
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
+
+  // Ensure this section scrolls into view when accessed via anchor link
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === '#pdf-download') {
+      // Wait for component to render, then scroll
+      setTimeout(() => {
+        const element = document.getElementById('pdf-download');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 1000);
+    }
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +36,7 @@ const NewsletterSignupSection: React.FC = () => {
 
   if (isSuccess) {
     return (
-      <section className="py-16 bg-[#444444] border border-[#e6e6e6]">
+      <section id="pdf-download" className="py-16 bg-[#444444] border border-[#e6e6e6]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center"
@@ -55,7 +69,7 @@ const NewsletterSignupSection: React.FC = () => {
   }
 
   return (
-    <section className="py-16 bg-[#444444] border border-[#e6e6e6]">
+    <section id="pdf-download" className="py-16 bg-[#444444] border border-[#e6e6e6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-8"

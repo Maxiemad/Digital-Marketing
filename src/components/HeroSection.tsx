@@ -195,6 +195,7 @@ const HeroSection: React.FC = () => {
               Watch How It Works
             </motion.button>
           </motion.div>
+
         </motion.div>
 
         {/* Right Column - Visual */}
