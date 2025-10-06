@@ -97,7 +97,7 @@ const FinalCTASection: React.FC = () => {
               Get a custom roadmap for your practice in 30 minutes
             </p>
             <motion.a
-              href="https://crm.gotoretreats.com/book/avi-sharma"
+              href="https://calendar.app.google/YhDFD6BUEuJJjxCu7"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition-all cursor-hover text-sm sm:text-base"

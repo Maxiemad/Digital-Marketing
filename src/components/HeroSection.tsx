@@ -167,7 +167,7 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <motion.a
-              href="https://crm.gotoretreats.com/book/avi-sharma"
+              href="https://calendar.app.google/YhDFD6BUEuJJjxCu7"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-teal-600 text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-teal-700 transition-all cursor-hover group w-full sm:w-auto"

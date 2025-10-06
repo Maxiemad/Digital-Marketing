@@ -94,7 +94,7 @@ const WhoWeHelpSection: React.FC = () => {
             Don't see your specialty? We work with all wellness professionals!
           </p>
           <motion.a
-            href="https://crm.gotoretreats.com/book/avi-sharma"
+            href="https://calendar.app.google/YhDFD6BUEuJJjxCu7"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-teal-600 text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-teal-700 transition-all cursor-hover"
