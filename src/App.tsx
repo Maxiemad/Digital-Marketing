@@ -7,6 +7,7 @@ import SoulfulMethodology from './components/SoulfulMethodology';
 import InfiniteScrollRail from './components/InfiniteScrollRail';
 import ServicesSection from './components/ServicesSection';
 import ComparisonSection from './components/ComparisonSection';
+import WhatPeopleSaySection from './components/WhatPeopleSaySection';
 import AuditSection from './components/AuditSection';
 import WhoWeHelpSection from './components/WhoWeHelpSection';
 import NewsletterSignupSection from './components/NewsletterSignupSection';
@@ -55,6 +56,7 @@ function App() {
       <InfiniteScrollRail />
       <ServicesSection />
       <ComparisonSection />
+      <WhatPeopleSaySection />
       <AuditSection />
       <WhoWeHelpSection />
       <NewsletterSignupSection />
