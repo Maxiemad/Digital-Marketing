@@ -132,7 +132,9 @@ const SoulfulMethodology: React.FC = () => {
           viewport={{ once: true }}
         >
           <motion.a
-            href="/book-call"
+            href="https://crm.gotoretreats.com/widget/booking/oRJHFwXLOYf8WFB6X1qN"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-teal-600 text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-teal-700 transition-all cursor-hover"
             whileHover={{ 
               scale: 1.05,

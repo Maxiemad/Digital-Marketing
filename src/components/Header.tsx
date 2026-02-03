@@ -76,24 +76,26 @@ const Header: React.FC = () => {
 
           {/* CTA Buttons - Desktop */}
           <div className="hidden lg:flex space-x-3 xl:space-x-4">
-            <Link to="/book-call">
-              <motion.span
-                className="inline-block px-3 xl:px-4 py-2 text-sm xl:text-base text-teal-600 border border-teal-600 rounded-lg hover:bg-teal-50 transition-colors cursor-hover"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Free Audit
-              </motion.span>
-            </Link>
-            <Link to="/book-call">
-              <motion.span
-                className="inline-block px-3 xl:px-4 py-2 text-sm xl:text-base bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors cursor-hover"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Book Call
-              </motion.span>
-            </Link>
+            <motion.a
+              href="https://hello.gotoretreats.com/free-marketing-assessment"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 xl:px-4 py-2 text-sm xl:text-base text-teal-600 border border-teal-600 rounded-lg hover:bg-teal-50 transition-colors cursor-hover"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Free Audit
+            </motion.a>
+            <motion.a
+              href="https://crm.gotoretreats.com/widget/booking/oRJHFwXLOYf8WFB6X1qN"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 xl:px-4 py-2 text-sm xl:text-base bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors cursor-hover"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Book Call
+            </motion.a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -125,20 +127,24 @@ const Header: React.FC = () => {
                 </button>
               ))}
               <div className="px-4 space-y-3 pt-2">
-                <Link
-                  to="/book-call"
+                <a
+                  href="https://hello.gotoretreats.com/free-marketing-assessment"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full text-center px-4 py-3 text-teal-600 border-2 border-teal-600 rounded-lg cursor-hover font-semibold text-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Free Audit
-                </Link>
-                <Link
-                  to="/book-call"
+                </a>
+                <a
+                  href="https://crm.gotoretreats.com/widget/booking/oRJHFwXLOYf8WFB6X1qN"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full text-center px-4 py-3 bg-teal-600 text-white rounded-lg cursor-hover font-semibold text-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Book Call
-                </Link>
+                </a>
               </div>
             </div>
           </motion.div>

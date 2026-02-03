@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CustomCursor from './components/CustomCursor';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
@@ -14,6 +14,21 @@ import NewsletterSignupSection from './components/NewsletterSignupSection';
 import FinalCTASection from './components/FinalCTASection';
 
 function App() {
+  // Re-mount key: bump when page is restored from back-forward cache so layout/animations reset
+  const [contentKey, setContentKey] = useState(0);
+
+  // Fix layout/animations when returning via browser back (bfcache restore)
+  useEffect(() => {
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) {
+        window.scrollTo(0, 0);
+        setContentKey((k) => k + 1);
+      }
+    };
+    window.addEventListener('pageshow', handlePageShow);
+    return () => window.removeEventListener('pageshow', handlePageShow);
+  }, []);
+
   // Handle anchor links for direct navigation
   useEffect(() => {
     const handleHashChange = () => {
@@ -52,7 +67,7 @@ function App() {
       <Header />
       <HeroSection />
       <PainPointsSection />
-      <SoulfulMethodology />
+      <SoulfulMethodology key={contentKey} />
       <InfiniteScrollRail />
       <ServicesSection />
       <ComparisonSection />

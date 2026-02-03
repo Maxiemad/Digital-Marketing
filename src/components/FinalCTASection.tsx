@@ -97,7 +97,9 @@ const FinalCTASection: React.FC = () => {
               Get a custom roadmap for your practice in 30 minutes
             </p>
             <motion.a
-              href="/book-call"
+              href="https://crm.gotoretreats.com/widget/booking/oRJHFwXLOYf8WFB6X1qN"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition-all cursor-hover text-sm sm:text-base"
               whileHover={{ 
                 scale: 1.05,
@@ -132,7 +134,9 @@ const FinalCTASection: React.FC = () => {
               Discover what's holding your practice back
             </p>
             <motion.a
-              href="/book-call"
+              href="https://hello.gotoretreats.com/free-marketing-assessment"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-all cursor-hover text-sm sm:text-base"
               whileHover={{ 
                 scale: 1.05,
