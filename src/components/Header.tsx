@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const Header: React.FC = () => {
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,17 +37,28 @@ const Header: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex justify-between items-center transition-all duration-300 ${isScrolled ? 'py-1 sm:py-2' : 'py-3 sm:py-4'}`}>
-          <motion.div
-            className="flex items-center cursor-hover"
-            whileHover={{ scale: 1.05 }}
-            onClick={() => scrollToSection('hero')}
-          >
-            <img 
-              src="/Screenshot_2025-06-08_at_7.05.20_PM-removebg-preview.png" 
-              alt="GoToRetreats" 
-              className={`transition-all duration-300 ${isScrolled ? 'h-10 sm:h-12' : 'h-16 sm:h-20'} w-auto`}
-            />
-          </motion.div>
+          {isHome ? (
+            <motion.div
+              className="flex items-center cursor-hover"
+              whileHover={{ scale: 1.05 }}
+              onClick={() => scrollToSection('hero')}
+            >
+              <img 
+                src="/Screenshot_2025-06-08_at_7.05.20_PM-removebg-preview.png" 
+                alt="GoToRetreats" 
+                className={`transition-all duration-300 ${isScrolled ? 'h-10 sm:h-12' : 'h-16 sm:h-20'} w-auto`}
+              />
+            </motion.div>
+          ) : (
+            <Link to="/" className="flex items-center cursor-hover">
+              <motion.img 
+                src="/Screenshot_2025-06-08_at_7.05.20_PM-removebg-preview.png" 
+                alt="GoToRetreats" 
+                className={`transition-all duration-300 ${isScrolled ? 'h-10 sm:h-12' : 'h-16 sm:h-20'} w-auto`}
+                whileHover={{ scale: 1.05 }}
+              />
+            </Link>
+          )}
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex space-x-8">
@@ -62,26 +76,24 @@ const Header: React.FC = () => {
 
           {/* CTA Buttons - Desktop */}
           <div className="hidden lg:flex space-x-3 xl:space-x-4">
-            <motion.a
-              href="https://hello.gotoretreats.com/free-marketing-assessment"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 xl:px-4 py-2 text-sm xl:text-base text-teal-600 border border-teal-600 rounded-lg hover:bg-teal-50 transition-colors cursor-hover"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Free Audit
-            </motion.a>
-            <motion.a
-              href="https://calendar.app.google/YhDFD6BUEuJJjxCu7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 xl:px-4 py-2 text-sm xl:text-base bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors cursor-hover"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Book Call
-            </motion.a>
+            <Link to="/book-call">
+              <motion.span
+                className="inline-block px-3 xl:px-4 py-2 text-sm xl:text-base text-teal-600 border border-teal-600 rounded-lg hover:bg-teal-50 transition-colors cursor-hover"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Free Audit
+              </motion.span>
+            </Link>
+            <Link to="/book-call">
+              <motion.span
+                className="inline-block px-3 xl:px-4 py-2 text-sm xl:text-base bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors cursor-hover"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Book Call
+              </motion.span>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -113,22 +125,20 @@ const Header: React.FC = () => {
                 </button>
               ))}
               <div className="px-4 space-y-3 pt-2">
-                <a
-                  href="https://hello.gotoretreats.com/free-marketing-assessment"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/book-call"
                   className="block w-full text-center px-4 py-3 text-teal-600 border-2 border-teal-600 rounded-lg cursor-hover font-semibold text-lg"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Free Audit
-                </a>
-                <a
-                  href="https://calendar.app.google/YhDFD6BUEuJJjxCu7"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                </Link>
+                <Link
+                  to="/book-call"
                   className="block w-full text-center px-4 py-3 bg-teal-600 text-white rounded-lg cursor-hover font-semibold text-lg"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Book Call
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

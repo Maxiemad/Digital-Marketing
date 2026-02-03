@@ -249,9 +249,7 @@ const ServicesSection: React.FC = () => {
           viewport={{ once: true }}
         >
           <motion.a
-            href="https://calendar.app.google/YhDFD6BUEuJJjxCu7"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/book-call"
             className="inline-flex items-center px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-2xl font-semibold text-lg sm:text-xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-hover backdrop-blur-sm border border-white/10"
             whileHover={{ 
               scale: 1.05,
