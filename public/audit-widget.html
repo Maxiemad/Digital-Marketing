@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Marketing Audit</title>
+  <style>
+    html, body { scrollbar-width: none; -ms-overflow-style: none; margin: 0; min-height: 100vh; overflow-x: hidden; }
+    html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+    body { display: flex; flex-direction: column; align-items: center; }
+    body > div { width: 100%; max-width: 640px; margin-left: auto; margin-right: auto; box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <script>
+    (function() {
+      function sendHeight() {
+        var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+        try { window.parent.postMessage({ type: 'audit-widget-height', height: h }, '*'); } catch (e) {}
+      }
+      sendHeight();
+      var heightInterval = setInterval(sendHeight, 400);
+      setTimeout(function() { clearInterval(heightInterval); }, 15000);
+      var observer = new MutationObserver(sendHeight);
+      observer.observe(document.body, { childList: true, subtree: true });
+    })();
+  </script>
+  <script src="https://services.leadconnectorhq.com/prospecting/client/widget-embed.js" data-widget-id="694dfb6ef47f31cbe7604e7a"></script>
+</body>
+</html>

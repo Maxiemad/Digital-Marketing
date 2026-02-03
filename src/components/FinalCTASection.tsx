@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Phone, Mail, FileText } from 'lucide-react';
 
@@ -133,19 +134,21 @@ const FinalCTASection: React.FC = () => {
             <p className="text-gray-300 mb-6 text-sm sm:text-base">
               Discover what's holding your practice back
             </p>
-            <motion.a
-              href="https://hello.gotoretreats.com/free-marketing-assessment"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/free-audit"
               className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-all cursor-hover text-sm sm:text-base"
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0 20px 40px rgba(249, 115, 22, 0.4)"
-              }}
-              whileTap={{ scale: 0.95 }}
             >
-              Get Audit
-            </motion.a>
+              <motion.span
+                className="inline-block"
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 20px 40px rgba(249, 115, 22, 0.4)"
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Get Audit
+              </motion.span>
+            </Link>
           </motion.div>
 
           {/* Email Contact */}

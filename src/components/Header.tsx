@@ -8,6 +8,7 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isHome = location.pathname === '/';
+  const isFreeAuditPage = location.pathname === '/free-audit';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,32 +61,33 @@ const Header: React.FC = () => {
             </Link>
           )}
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex space-x-8">
-            {['methodology', 'services', 'contact'].map((item) => (
-              <motion.button
-                key={item}
-                className="text-gray-700 hover:text-teal-600 font-medium cursor-hover capitalize transition-colors text-sm xl:text-base"
-                whileHover={{ y: -2 }}
-                onClick={() => scrollToSection(item)}
-              >
-                {item}
-              </motion.button>
-            ))}
-          </nav>
+          {/* Desktop Navigation - hidden on Free Audit page */}
+          {!isFreeAuditPage && (
+            <nav className="hidden lg:flex space-x-8">
+              {['methodology', 'services', 'contact'].map((item) => (
+                <motion.button
+                  key={item}
+                  className="text-gray-700 hover:text-teal-600 font-medium cursor-hover capitalize transition-colors text-sm xl:text-base"
+                  whileHover={{ y: -2 }}
+                  onClick={() => scrollToSection(item)}
+                >
+                  {item}
+                </motion.button>
+              ))}
+            </nav>
+          )}
 
           {/* CTA Buttons - Desktop */}
           <div className="hidden lg:flex space-x-3 xl:space-x-4">
-            <motion.a
-              href="https://hello.gotoretreats.com/free-marketing-assessment"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 xl:px-4 py-2 text-sm xl:text-base text-teal-600 border border-teal-600 rounded-lg hover:bg-teal-50 transition-colors cursor-hover"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Free Audit
-            </motion.a>
+            <Link to="/free-audit">
+              <motion.span
+                className="inline-block px-3 xl:px-4 py-2 text-sm xl:text-base text-teal-600 border border-teal-600 rounded-lg hover:bg-teal-50 transition-colors cursor-hover"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Free Audit
+              </motion.span>
+            </Link>
             <motion.a
               href="https://crm.gotoretreats.com/widget/booking/oRJHFwXLOYf8WFB6X1qN"
               target="_blank"
@@ -117,7 +119,7 @@ const Header: React.FC = () => {
             exit={{ opacity: 0, height: 0 }}
           >
             <div className="py-4 space-y-4">
-              {['methodology', 'services', 'contact'].map((item) => (
+              {!isFreeAuditPage && ['methodology', 'services', 'contact'].map((item) => (
                 <button
                   key={item}
                   className="block w-full text-left px-4 py-3 text-gray-700 hover:text-teal-600 capitalize cursor-hover text-lg font-medium"
@@ -127,15 +129,13 @@ const Header: React.FC = () => {
                 </button>
               ))}
               <div className="px-4 space-y-3 pt-2">
-                <a
-                  href="https://hello.gotoretreats.com/free-marketing-assessment"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/free-audit"
                   className="block w-full text-center px-4 py-3 text-teal-600 border-2 border-teal-600 rounded-lg cursor-hover font-semibold text-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Free Audit
-                </a>
+                </Link>
                 <a
                   href="https://crm.gotoretreats.com/widget/booking/oRJHFwXLOYf8WFB6X1qN"
                   target="_blank"

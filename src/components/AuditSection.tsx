@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Monitor, Smartphone, Search, Map, Mail } from 'lucide-react';
 
@@ -95,19 +96,18 @@ const AuditSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <motion.a
-            href="https://hello.gotoretreats.com/free-marketing-assessment"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-teal-600 rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-100 transition-all cursor-hover"
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 20px 40px rgba(255, 255, 255, 0.3)"
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Get Your Free Audit Now
-          </motion.a>
+          <Link to="/free-audit">
+            <motion.span
+              className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-teal-600 rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-100 transition-all cursor-hover"
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: "0 20px 40px rgba(255, 255, 255, 0.3)"
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get Your Free Audit Now
+            </motion.span>
+          </Link>
 
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-2 text-teal-100"
